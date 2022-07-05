@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, Component } from "react";
+import Footer from "./components/footer/Footer";
+import Form from "./components/form/Form";
+import Navbar from "./components/navigation/Navbar";
+import Notes from "./components/notes/Notes.jsx";
+// Importing data from utils
+import { getInitialData } from "./utils/index";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      initData: getInitialData(),
+    };
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Navbar />
+        <Form />
+        <Notes />
+        <Footer />
+      </Fragment>
+    );
+  }
 }
 
 export default App;
