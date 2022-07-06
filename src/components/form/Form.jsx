@@ -23,7 +23,9 @@ class Form extends Component {
   submitHandler(e) {
     e.preventDefault();
 
-    if (this.state.title.length > 0) {
+    if (this.state.title.length === 0 || this.state.title.length > 50) {
+      return;
+    } else {
       this.props.addNote(this.state);
 
       this.setState(() => {
@@ -52,14 +54,6 @@ class Form extends Component {
       };
     });
   }
-
-  // countHandler() {
-  //   this.setState((prevState) => {
-  //     return {
-  //       letters: prevState.letters + 1,
-  //     };
-  //   });
-  // }
 
   render() {
     return (

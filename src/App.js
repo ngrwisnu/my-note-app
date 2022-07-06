@@ -21,6 +21,8 @@ class App extends Component {
 
     this.formatDate = this.formatDate.bind(this);
     this.addNote = this.addNote.bind(this);
+    this.noteButtonHandler = this.noteButtonHandler.bind(this);
+    this.archiveHandler = this.archiveHandler.bind(this);
   }
 
   formatDate(date) {
@@ -44,6 +46,45 @@ class App extends Component {
     });
   }
 
+  noteButtonHandler(id, name) {
+    if (name === "delete") {
+      this.deleteHandler(id);
+    }
+
+    if (name === "edit") {
+      this.editHandler(id, name);
+    }
+
+    if (name === "archive") {
+      const newData = this.archiveHandler(id);
+
+      console.log(newData);
+    }
+  }
+
+  deleteHandler(id) {
+    const newNotes = this.state.initData.filter((data) => data.id !== id);
+
+    this.setState(() => {
+      return {
+        initData: newNotes,
+      };
+    });
+  }
+
+  archiveHandler(id) {
+    this.state.initData.map((data) => {
+      if (data.id === id) {
+        return data;
+      }
+    });
+    return null;
+  }
+
+  editHandler(id, name) {
+    console.log(id, name);
+  }
+
   render() {
     return (
       <Fragment>
@@ -53,7 +94,11 @@ class App extends Component {
           bodyValHandler={this.bodyValHandler}
           addNote={this.addNote}
         />
-        <Notes initData={this.state.initData} formatDate={this.formatDate} />
+        <Notes
+          initData={this.state.initData}
+          formatDate={this.formatDate}
+          noteButtonHandler={this.noteButtonHandler}
+        />
         <Footer />
       </Fragment>
     );
