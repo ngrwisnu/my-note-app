@@ -1,13 +1,11 @@
 import React from "react";
 
-const IconButton = ({ children, noteButtonHandler, id, name, isArchived }) => {
+const IconButton = ({ children, noteButtonHandler, id, name }) => {
   return (
     <button
-      className={`rounded-full bg-slate-600 p-3 text-xl ${
-        isArchived ? "bg-green-600" : ""
-      }`}
+      className={`rounded-full bg-slate-300 p-3 text-xl`}
       onClick={() => {
-        noteButtonHandler(id, name, isArchived);
+        noteButtonHandler(id, name);
       }}
     >
       {children}

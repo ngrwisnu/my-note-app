@@ -18,7 +18,7 @@ class App extends Component {
 
     this.state = {
       initData: initNotes,
-      tabStatus: "",
+      tabStatus: "recent",
     };
 
     this.formatDate = this.formatDate.bind(this);
@@ -26,6 +26,7 @@ class App extends Component {
     this.noteButtonHandler = this.noteButtonHandler.bind(this);
     this.archiveHandler = this.archiveHandler.bind(this);
     this.showNoteHandler = this.showNoteHandler.bind(this);
+    this.undoHandler = this.undoHandler.bind(this);
   }
 
   formatDate(date) {
@@ -61,6 +62,10 @@ class App extends Component {
     if (name === "archive") {
       this.archiveHandler(id);
     }
+
+    if (name === "undo") {
+      this.undoHandler(id);
+    }
   }
 
   deleteHandler(id) {
@@ -81,17 +86,33 @@ class App extends Component {
     }));
   }
 
-  editHandler(id, name) {
-    console.log(id, name);
+  editHandler(id) {
+    alert("Button functionality under construction!");
+  }
+
+  undoHandler(id) {
+    this.setState((prevState) => ({
+      initData: prevState.initData.map((el) =>
+        el.id === id ? { ...el, archived: false } : el
+      ),
+    }));
   }
 
   showNoteHandler(name) {
     if (name === "recent") {
-      console.log("button terbaru ditekan");
+      this.setState(() => {
+        return {
+          tabStatus: name,
+        };
+      });
     }
 
     if (name === "archive") {
-      console.log("button arsip ditekan");
+      this.setState(() => {
+        return {
+          tabStatus: name,
+        };
+      });
     }
   }
 
@@ -104,11 +125,15 @@ class App extends Component {
           bodyValHandler={this.bodyValHandler}
           addNote={this.addNote}
         />
-        <TabsNav showNoteHandler={this.showNoteHandler} />
+        <TabsNav
+          showNoteHandler={this.showNoteHandler}
+          tabStatus={this.state.tabStatus}
+        />
         <Notes
           initData={this.state.initData}
           formatDate={this.formatDate}
           noteButtonHandler={this.noteButtonHandler}
+          tabStatus={this.state.tabStatus}
         />
         <Footer />
       </Fragment>

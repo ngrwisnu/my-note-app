@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from "../buttons/IconButton";
-import { FaTrashAlt, FaPen, FaArchive } from "react-icons/fa";
+import { FaTrashAlt, FaPen, FaArchive, FaUndo } from "react-icons/fa";
 
 const Note = ({
   title,
@@ -23,14 +23,26 @@ const Note = ({
 
       <div id="article__footer">
         <div className="flex justify-end gap-3">
-          <IconButton
-            noteButtonHandler={noteButtonHandler}
-            id={id}
-            name="archive"
-            isArchived={isArchived}
-          >
-            <FaArchive />
-          </IconButton>
+          {!isArchived ? (
+            <IconButton
+              noteButtonHandler={noteButtonHandler}
+              id={id}
+              name="archive"
+              isArchived={isArchived}
+            >
+              <FaArchive />
+            </IconButton>
+          ) : (
+            <IconButton
+              noteButtonHandler={noteButtonHandler}
+              id={id}
+              name="undo"
+              isArchived={isArchived}
+            >
+              <FaUndo />
+            </IconButton>
+          )}
+
           <IconButton noteButtonHandler={noteButtonHandler} id={id} name="edit">
             <FaPen />
           </IconButton>

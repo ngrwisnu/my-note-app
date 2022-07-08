@@ -4,16 +4,24 @@ import ContentWrapper from "../layout/ContentWrapper";
 import { FaSearch } from "react-icons/fa";
 import TabButton from "../buttons/TabButton";
 
-const TabsNav = ({ showNoteHandler }) => {
+const TabsNav = ({ showNoteHandler, tabStatus }) => {
   return (
     <section>
       <Container>
         <ContentWrapper className="flex justify-between">
           <div className="flex gap-4">
-            <TabButton name="recent" showNoteHandler={showNoteHandler}>
+            <TabButton
+              name="recent"
+              showNoteHandler={showNoteHandler}
+              tabStatus={tabStatus}
+            >
               <span>Terbaru</span>
             </TabButton>
-            <TabButton name="archive" showNoteHandler={showNoteHandler}>
+            <TabButton
+              name="archive"
+              showNoteHandler={showNoteHandler}
+              tabStatus={tabStatus}
+            >
               <span>Arsip</span>
             </TabButton>
           </div>
