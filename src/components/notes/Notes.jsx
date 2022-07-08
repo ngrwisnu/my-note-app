@@ -7,7 +7,7 @@ const Notes = ({ initData, formatDate, noteButtonHandler }) => {
   return (
     <section>
       <Container>
-        <ContentWrapper className="flex min-h-[500px] flex-wrap gap-4 py-12">
+        <ContentWrapper className="flex min-h-[500px] flex-wrap gap-4 pb-12 pt-8">
           {initData.map((note) => (
             <Note
               key={note.id}

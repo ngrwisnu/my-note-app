@@ -1,5 +1,5 @@
 import React from "react";
-import IconButton from "../iconButton/IconButton";
+import IconButton from "../buttons/IconButton";
 import { FaTrashAlt, FaPen, FaArchive } from "react-icons/fa";
 
 const Note = ({
