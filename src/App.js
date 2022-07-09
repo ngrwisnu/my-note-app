@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       initData: initNotes,
       tabStatus: "recent",
+      filteredNotes: [],
       searchValue: "",
     };
 

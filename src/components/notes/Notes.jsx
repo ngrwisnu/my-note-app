@@ -1,4 +1,5 @@
 import React from "react";
+import EmptyNote from "../emptyNote/EmptyNote";
 import Container from "../layout/Container";
 import ContentWrapper from "../layout/ContentWrapper";
 import Note from "./Note";
@@ -10,10 +11,10 @@ const Notes = ({
   tabStatus,
   searchValue,
 }) => {
-  let showNote;
+  let showNotes;
 
   if (tabStatus === "recent") {
-    showNote = initData.map((note) => {
+    showNotes = initData.map((note) => {
       if (note.archived === false) {
         return (
           <Note
@@ -25,7 +26,9 @@ const Notes = ({
             formatDate={formatDate}
             noteButtonHandler={noteButtonHandler}
             id={note.id}
-            className={`${!note.title.includes(searchValue) && "hidden"}`}
+            hideNote={`${
+              !note.title.toLowerCase().includes(searchValue) && "hidden"
+            }`}
           />
         );
       }
@@ -33,7 +36,7 @@ const Notes = ({
   }
 
   if (tabStatus === "archive") {
-    showNote = initData.map((note) => {
+    showNotes = initData.map((note) => {
       if (note.archived === true) {
         return (
           <Note
@@ -45,19 +48,23 @@ const Notes = ({
             formatDate={formatDate}
             noteButtonHandler={noteButtonHandler}
             id={note.id}
-            className={`${!note.title.includes(searchValue) && "hidden"}`}
+            className={`${
+              !note.title.toLowerCase().includes(searchValue) && "hidden"
+            }`}
           />
         );
       }
     });
   }
-  console.log(showNote);
+  console.log(showNotes);
+  const newStatus = showNotes.filter((data) => data !== undefined);
+  console.log(newStatus);
 
   return (
     <section>
       <Container>
         <ContentWrapper className="flex min-h-[500px] flex-wrap gap-4 pb-12 pt-8">
-          {showNote}
+          {newStatus.length === 0 ? <EmptyNote /> : showNotes}
         </ContentWrapper>
       </Container>
     </section>

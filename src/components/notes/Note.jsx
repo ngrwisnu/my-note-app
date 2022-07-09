@@ -10,11 +10,11 @@ const Note = ({
   noteButtonHandler,
   id,
   isArchived,
-  className,
+  hideNote,
 }) => {
   return (
     <article
-      className={`flex w-[300px] flex-col justify-between gap-4 whitespace-pre-line rounded-md bg-[#FFD966] p-6 shadow-note ${className}`}
+      className={`flex w-[300px] flex-col justify-between gap-4 whitespace-pre-line rounded-md bg-[#FFD966] p-6 shadow-note ${hideNote}`}
     >
       <div id="article__head" className="flex flex-col gap-4">
         <h1 className="text-xl font-medium text-neutral-900">{title}</h1>

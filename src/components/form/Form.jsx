@@ -23,7 +23,10 @@ class Form extends Component {
   submitHandler(e) {
     e.preventDefault();
 
-    if (this.state.title.length === 0 || this.state.title.length > 50) {
+    if (
+      this.state.title.length === 0 ||
+      this.state.title.length > lettersLimit
+    ) {
       return;
     } else {
       this.props.addNote(this.state);
@@ -103,7 +106,11 @@ class Form extends Component {
 
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#fe8c00] to-[#f83600] py-2 px-4 font-medium text-neutral-50 shadow-btn active:translate-y-[6px] active:shadow-none active:ring active:ring-orange-300 active:ring-offset-2"
+                className={`flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#fe8c00] to-[#f83600] py-2 px-4 font-medium text-neutral-50 shadow-btn active:translate-y-[6px] active:shadow-none active:ring active:ring-orange-300 active:ring-offset-2 ${
+                  this.state.title.length === 0 ||
+                  (this.state.title.length > lettersLimit &&
+                    "cursor-not-allowed")
+                }`}
               >
                 <FaPlus />
                 Tambahkan
