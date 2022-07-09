@@ -4,7 +4,13 @@ import ContentWrapper from "../layout/ContentWrapper";
 import { FaSearch } from "react-icons/fa";
 import TabButton from "../buttons/TabButton";
 
-const TabsNav = ({ showNoteHandler, tabStatus }) => {
+const TabsNav = ({
+  showNoteHandler,
+  tabStatus,
+  searchValue,
+  searchHandler,
+  searchSubmitHandler,
+}) => {
   return (
     <section>
       <Container>
@@ -27,14 +33,21 @@ const TabsNav = ({ showNoteHandler, tabStatus }) => {
           </div>
 
           <div className="flex w-[320px] items-center justify-center">
-            <form className="flex w-full gap-4 rounded-md border border-slate-400 pl-3 ">
+            <form
+              className="flex w-full gap-4 rounded-md border border-slate-400 pl-3"
+              onSubmit={searchSubmitHandler}
+            >
               <button>
                 <FaSearch className="text-slate-500" />
               </button>
               <input
                 type="text"
-                placeholder="Cari catatan"
+                placeholder="Cari judul catatan"
                 className="py-3 text-slate-500 focus:outline-none"
+                value={searchValue}
+                onChange={(e) => {
+                  searchHandler(e.target.value);
+                }}
               />
             </form>
           </div>

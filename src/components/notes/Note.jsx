@@ -10,9 +10,12 @@ const Note = ({
   noteButtonHandler,
   id,
   isArchived,
+  className,
 }) => {
   return (
-    <article className="flex w-[300px] flex-col justify-between gap-4 whitespace-pre-line rounded-md bg-[#FFD966] p-6 shadow-note">
+    <article
+      className={`flex w-[300px] flex-col justify-between gap-4 whitespace-pre-line rounded-md bg-[#FFD966] p-6 shadow-note ${className}`}
+    >
       <div id="article__head" className="flex flex-col gap-4">
         <h1 className="text-xl font-medium text-neutral-900">{title}</h1>
         <p className="text-xs font-normal text-neutral-600">
@@ -30,7 +33,7 @@ const Note = ({
               name="archive"
               isArchived={isArchived}
             >
-              <FaArchive />
+              <FaArchive className="text-neutral-500 hover:text-neutral-900" />
             </IconButton>
           ) : (
             <IconButton
@@ -39,19 +42,19 @@ const Note = ({
               name="undo"
               isArchived={isArchived}
             >
-              <FaUndo />
+              <FaUndo className="text-neutral-500 hover:text-neutral-900" />
             </IconButton>
           )}
 
           <IconButton noteButtonHandler={noteButtonHandler} id={id} name="edit">
-            <FaPen />
+            <FaPen className="text-neutral-500 hover:text-neutral-900" />
           </IconButton>
           <IconButton
             noteButtonHandler={noteButtonHandler}
             id={id}
             name="delete"
           >
-            <FaTrashAlt />
+            <FaTrashAlt className="text-neutral-500 hover:text-red-600" />
           </IconButton>
         </div>
       </div>

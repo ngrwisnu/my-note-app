@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       initData: initNotes,
       tabStatus: "recent",
+      searchValue: "",
     };
 
     this.formatDate = this.formatDate.bind(this);
@@ -27,6 +28,8 @@ class App extends Component {
     this.archiveHandler = this.archiveHandler.bind(this);
     this.showNoteHandler = this.showNoteHandler.bind(this);
     this.undoHandler = this.undoHandler.bind(this);
+    this.searchHandler = this.searchHandler.bind(this);
+    this.searchSubmitHandler = this.searchSubmitHandler.bind(this);
   }
 
   formatDate(date) {
@@ -116,6 +119,19 @@ class App extends Component {
     }
   }
 
+  searchHandler(val) {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        searchValue: val,
+      };
+    });
+  }
+
+  searchSubmitHandler(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <Fragment>
@@ -128,12 +144,16 @@ class App extends Component {
         <TabsNav
           showNoteHandler={this.showNoteHandler}
           tabStatus={this.state.tabStatus}
+          searchValue={this.state.searchValue}
+          searchHandler={this.searchHandler}
+          searchSubmitHandler={this.searchSubmitHandler}
         />
         <Notes
           initData={this.state.initData}
           formatDate={this.formatDate}
           noteButtonHandler={this.noteButtonHandler}
           tabStatus={this.state.tabStatus}
+          searchValue={this.state.searchValue}
         />
         <Footer />
       </Fragment>

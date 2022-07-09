@@ -8,8 +8,7 @@ const Footer = () => {
       <Container className="bg-main">
         <ContentWrapper className="py-3">
           <p className="text-center text-xs text-neutral-50">
-            Copyright &copy; 2022. IDCamp React project established by Ngr
-            Wisnu.
+            Copyright &copy; 2022. IDCamp React project made by Ngr Wisnu.
           </p>
         </ContentWrapper>
       </Container>

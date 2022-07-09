@@ -3,7 +3,13 @@ import Container from "../layout/Container";
 import ContentWrapper from "../layout/ContentWrapper";
 import Note from "./Note";
 
-const Notes = ({ initData, formatDate, noteButtonHandler, tabStatus }) => {
+const Notes = ({
+  initData,
+  formatDate,
+  noteButtonHandler,
+  tabStatus,
+  searchValue,
+}) => {
   let showNote;
 
   if (tabStatus === "recent") {
@@ -19,6 +25,7 @@ const Notes = ({ initData, formatDate, noteButtonHandler, tabStatus }) => {
             formatDate={formatDate}
             noteButtonHandler={noteButtonHandler}
             id={note.id}
+            className={`${!note.title.includes(searchValue) && "hidden"}`}
           />
         );
       }
@@ -38,11 +45,13 @@ const Notes = ({ initData, formatDate, noteButtonHandler, tabStatus }) => {
             formatDate={formatDate}
             noteButtonHandler={noteButtonHandler}
             id={note.id}
+            className={`${!note.title.includes(searchValue) && "hidden"}`}
           />
         );
       }
     });
   }
+  console.log(showNote);
 
   return (
     <section>
