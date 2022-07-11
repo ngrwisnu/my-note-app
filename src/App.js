@@ -54,6 +54,7 @@ class App extends Component {
     });
   }
 
+  // Checking which button in the note was clicking
   noteButtonHandler(id, name) {
     if (name === "delete") {
       this.deleteHandler(id);
@@ -102,6 +103,7 @@ class App extends Component {
     }));
   }
 
+  // Checking which tab is active
   showNoteHandler(name) {
     if (name === "recent") {
       this.setState(() => {

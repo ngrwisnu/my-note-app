@@ -56,9 +56,9 @@ const Notes = ({
       }
     });
   }
-  console.log(showNotes);
+
+  //  Checking if there are no notes on the page then render the illustration
   const newStatus = showNotes.filter((data) => data !== undefined);
-  console.log(newStatus);
 
   return (
     <section>

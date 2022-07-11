@@ -4,7 +4,8 @@ import ContentWrapper from "../layout/ContentWrapper";
 // Importing icons
 import { FaPlus } from "react-icons/fa";
 
-const lettersLimit = 50;
+// Limit characters for title input
+const charLimit = 50;
 
 class Form extends Component {
   constructor(props) {
@@ -23,10 +24,8 @@ class Form extends Component {
   submitHandler(e) {
     e.preventDefault();
 
-    if (
-      this.state.title.length === 0 ||
-      this.state.title.length > lettersLimit
-    ) {
+    // If there is no title or title exceeds the limit then do nothing
+    if (this.state.title.length === 0 || this.state.title.length > charLimit) {
       return;
     } else {
       this.props.addNote(this.state);
@@ -75,7 +74,7 @@ class Form extends Component {
                   type="text"
                   placeholder="Catatan hari ini ..."
                   className={`py-2 px-4 ${
-                    this.state.title.length > lettersLimit
+                    this.state.title.length > charLimit
                       ? "bg-red-100 focus:outline-1 focus:outline-red-700"
                       : "focus:outline-none"
                   }`}
@@ -84,11 +83,11 @@ class Form extends Component {
                 />
                 <small
                   className={`text-end ${
-                    this.state.title.length > lettersLimit ? "text-red-700" : ""
+                    this.state.title.length > charLimit ? "text-red-700" : ""
                   }`}
                   onChange={this.countHandler}
                 >
-                  {this.state.title.length} / {lettersLimit}
+                  {this.state.title.length} / {charLimit}
                 </small>
               </div>
 
@@ -108,8 +107,7 @@ class Form extends Component {
                 type="submit"
                 className={`flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#fe8c00] to-[#f83600] py-2 px-4 font-medium text-neutral-50 shadow-btn active:translate-y-[6px] active:shadow-none active:ring active:ring-orange-300 active:ring-offset-2 ${
                   this.state.title.length === 0 ||
-                  (this.state.title.length > lettersLimit &&
-                    "cursor-not-allowed")
+                  (this.state.title.length > charLimit && "cursor-not-allowed")
                 }`}
               >
                 <FaPlus />
